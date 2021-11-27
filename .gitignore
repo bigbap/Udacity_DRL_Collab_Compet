@@ -1,0 +1,7 @@
+environment
+.ipynb_checkpoints
+__pycache__
+test.py
+train.py
+.DS_Store
+*.pyc
