@@ -4,7 +4,7 @@ from unityagents import UnityEnvironment
 class Environment:
     def __init__(self, no_graphics=True, seed=0):
         self.env = UnityEnvironment(
-            file_name="./environment/Reacher.app", no_graphics=no_graphics, seed=seed)
+            file_name="./environment/Tennis.x86_64", no_graphics=no_graphics, seed=seed)
 
         # get the default brain
         self.brain_name = self.env.brain_names[0]
