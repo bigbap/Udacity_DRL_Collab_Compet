@@ -1,10 +1,15 @@
 from unityagents import UnityEnvironment
+import os
 
 
 class Environment:
     def __init__(self, no_graphics=True, seed=0):
-        self.env = UnityEnvironment(
-            file_name="./environment/Tennis.x86_64", no_graphics=no_graphics, seed=seed)
+        PATH = (
+            "./environment/Tennis.exe"
+            if os.name == "nt"
+            else "./environment/Tennis.x86_64"
+        )
+        self.env = UnityEnvironment(file_name=PATH, no_graphics=no_graphics, seed=seed,)
 
         # get the default brain
         self.brain_name = self.env.brain_names[0]
