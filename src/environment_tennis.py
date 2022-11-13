@@ -28,7 +28,7 @@ class EnvironmentTennis:
         PATH = (
             "./environment/Tennis.exe"
             if os.name == "nt"
-            else "./environment/Tennis.x86_64"
+            else "./environment/Tennis.app"
         )
         self.env = UnityEnvironment(file_name=PATH, no_graphics=no_graphics, seed=seed,)
 
