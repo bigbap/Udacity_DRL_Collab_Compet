@@ -5,3 +5,4 @@ test.py
 train.py
 .DS_Store
 *.pyc
+unity-environment*.log

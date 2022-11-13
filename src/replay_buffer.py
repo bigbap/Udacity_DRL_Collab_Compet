@@ -1,58 +1,88 @@
 import numpy as np
-from numpy import random as rnd
-import torch
-
-DEFAULT_BUFFER_SIZE = 1000
-DEFAULT_BATCH_SIZE = 64
+import random
+import torch as T
 
 
 class Experience:
-    def __init__(self, state, action, reward, state_prime, done):
+    def __init__(self, state, action, reward, state_, done):
         self.state = state
         self.action = action
         self.reward = reward
-        self.state_prime = state_prime
-        self.done = done
+        self.state_ = state_
+        self.done = int(done)
+
+    def __call__(self):
+        return (
+            self.state,
+            self.action,
+            self.reward,
+            self.state_,
+            self.done,
+        )
 
 
-class ReplayBuffer():
-    def __init__(self, max_length=DEFAULT_BUFFER_SIZE, batch_size=DEFAULT_BATCH_SIZE, device="cpu"):
-        self.max_length = max_length
-        self.batch_size = batch_size
-        self.device = device
+class ReplayBuffer:
+    def __init__(self, batch_size=64, max_size=1000000, device=T.device("cpu")):
         self.buffer = []
+        self.batch_size = batch_size
+        self.max_size = max_size
         self.head = -1
+        self.device = device
 
-    def move_head(self):
-        self.head = (self.head + 1) % self.max_length
-
-        if len(self.buffer) < self.max_length:
+    def add(self, experience):
+        # move buffer head
+        self.head = (self.head + 1) % self.max_size
+        if self.__len__() < self.max_size:
             self.buffer += [None]
 
-    def add(self, state, action, reward, state_prime, done):
-        self.move_head()
-
-        self.buffer[self.head] = Experience(
-            state, action, reward, state_prime, done)
+        self.buffer[self.head] = experience
 
     def sample(self):
-        batch = rnd.choice(self.buffer, size=self.batch_size)
+        batch = random.choices(self.buffer, k=self.batch_size)
 
         return self.prepare_batch(batch)
 
     def prepare_batch(self, batch):
-        states = torch.from_numpy(
-            np.vstack([e.state for e in batch if e is not None])).float().to(self.device)
-        actions = torch.from_numpy(
-            np.vstack([e.action for e in batch if e is not None])).float().to(self.device)
-        rewards = torch.from_numpy(
-            np.vstack([e.reward for e in batch if e is not None])).float().to(self.device)
-        next_states = torch.from_numpy(
-            np.vstack([e.state_prime for e in batch if e is not None])).float().to(self.device)
-        dones = torch.from_numpy(
-            np.vstack([e.done for e in batch if e is not None]).astype(np.uint8)).float().to(self.device)
+        states = (
+            T.from_numpy(np.vstack([e.state for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
+        actions = (
+            T.from_numpy(np.vstack([e.action for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
+        actions_other = (
+            T.from_numpy(np.vstack([e.action_other for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
+        rewards = (
+            T.from_numpy(np.vstack([e.reward for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
+        states_ = (
+            T.from_numpy(np.vstack([e.state_ for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
+        states_other_ = (
+            T.from_numpy(np.vstack([e.state_other_ for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
+        dones = (
+            T.from_numpy(np.vstack([e.done for e in batch if e is not None]))
+            .float()
+            .to(self.device)
+        )
 
-        return (states, actions, rewards, next_states, dones)
+        return states, actions, actions_other, rewards, states_, states_other_, dones
 
     def __len__(self):
         return len(self.buffer)
+
+    def __call__(self):
+        return self.sample()
