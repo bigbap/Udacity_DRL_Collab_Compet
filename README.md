@@ -1,5 +1,5 @@
-# Continuous Control
-This is the P2 project for the Deep Reinforcement Learning Nanodegree on https://www.udacity.com/.
+# Collaboration and Competition
+This is the P3 project for the Deep Reinforcement Learning Nanodegree on https://www.udacity.com/.
 
 The goal of this project is to create an agent that can be trained to maintain a double-jointed arm on a target location for as many time steps as possible. A reward of 0.1 is given for every step that the agent's hand is on the goal location.
 
@@ -18,8 +18,8 @@ This was built and **tested on MacBook Pro M1 chip only**.
 
 You will need to install Anaconda from https://www.anaconda.com/products/individual. Once Anaconda is installed, open up the terminal and type the following commands to create a new environment:
 
- 1. `conda create --name continuous python=3.6`. This will create a new environment called **continuous** where we will install the dependencies.
- 2. `conda activate continuous`. This will activate the environment we just created.
+ 1. `conda create --name collab_compet python=3.6`. This will create a new environment called **collab_compet** where we will install the dependencies.
+ 2. `conda activate collab_compet`. This will activate the environment we just created.
 
 Now we can install the dependencies:
 
@@ -27,8 +27,8 @@ Now we can install the dependencies:
  2. `pip3 install torch`. Should be version 1.9.1
 
 ## Training the model
-Open `Continuous_Control.ipynb` with **Jupyter Notebook** and follow the instructions to train a new agent.
+Open `Collab_Compet.ipynb` with **Jupyter Notebook** and follow the instructions to train a new agent.
 
-If you want to watch the trained agent playing, open `Continuous_Control_Play.ipynb` with **Jupyter Notebook** and follow the instructions.
+If you want to watch the trained agent playing, open `Collab_Compet_Play.ipynb` with **Jupyter Notebook** and follow the instructions.
 
 *Note: if you get any errors, please ensure that you have followed all the instructions in the **Getting started** section. Pay special attention to the dependencies and their versions. If you are not sure what packages you have installed, use `conda list` to list all the installed packages and their versions for the activated environment*

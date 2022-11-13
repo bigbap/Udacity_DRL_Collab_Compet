@@ -7,7 +7,7 @@ The environment is solved once the agent has accumulated an average score of 30 
 ![trained agent](./images/giphy.gif)
 
 ## 1. Implementation
-I used the `DDPG` algorithm, with a `uniformly sampled experience replay buffer`.
+I used the `MADDPG` algorithm, with a `uniformly sampled experience replay buffer`.
 
 ### 1.1. Neurals Nets
 There are 2 neural  networks. One for the actor and the critic. Bearing in mind that the environment has `state_space_n = 33` and `action_space_n = 4`, each neural net has the following layers:
