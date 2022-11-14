@@ -1,13 +1,13 @@
 # Collaboration and Competition
 This is the P3 project for the Deep Reinforcement Learning Nanodegree on https://www.udacity.com/.
 
-The goal of this project is to create an agent that can be trained to maintain a double-jointed arm on a target location for as many time steps as possible. A reward of 0.1 is given for every step that the agent's hand is on the goal location.
+In the environment, two agents control rackets to hit a ball over a net. A reward of `0.1` is given to the agent every time it successfully hits the ball over the net. A reward of `-0.01` is given to the agent that lets the ball hit the ground or hits it out of bounds. The goal of both agents is to keep the ball in play as long as possible.
 
-The state space is comprised of 33 dimensions corresponding to position, rotation, velocity, and angular velocities of the arm. The action space is a 4 number vector corresponding to torque applicable to the 2 joints. Every number in the action space is between `-1` and `1`.
+The state space is comprised of 8 dimensions corresponding to position and velocity of the ball and racket. Each agent recieves it's own, local state. The action space is a 2 number vector corresponding to movement toward (or away from) the net, and jumping. Every number in the action space is between `-1` and `1`.
 
-The problem is solved once the agent has achieved an average score of 30 over the last 100 episodes. An example of a trained agent can be seen below:
+The problem is solved once either agent has achieved an average score of `0.5` over the last 100 episodes. An example of a trained agent can be seen below:
 
-![trained agent](./images/giphy.gif)
+![trained agent](./images/trained.gif)
 
 ## Getting started
 This was built and **tested on MacBook Pro M1 chip only**.
