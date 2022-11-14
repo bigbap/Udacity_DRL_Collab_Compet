@@ -6,7 +6,7 @@ The environment is solved once either of the two agents has accumulated an avera
 ![trained agent](./images/trained.gif)
 
 ## 1. Implementation
-I used the `MADDPG` algorithm, with a `uniformly sampled experience replay buffer`. The `MADDPG` algorithym is derived from the `DDPG` algorithym and modified for multi-agent environments. The key difference is that the critic incorporates the actions from all agents when determining the Q values.
+I used the `MADDPG` algorithm, with a `uniformly sampled experience replay buffer`. The `MADDPG` algorithm is derived from the `DDPG` algorithm and modified for multi-agent environments. The key difference is that the critic incorporates the actions from all agents when determining the Q values.
 
 ### 1.1. Neurals Nets
 There are 2 neural networks. One for the actor and the critic. The environment has a state space size of `8`, but the networks will take the last `3` states as inputs. The action space size is `2`. Bearing that in mind, each neural net has the following fully connected layers:
@@ -43,6 +43,5 @@ The environment was solved in 832 episodes as can be seen in the plot below.
 ![plot](./images/training_graph.png)
 
 ## 3. Ideas for the Future
-- Prioritized experience replay. I tried implementing a prioritized experience replay but it didn't seem to be making much of difference and there was a bug that cause the agent to crash if `WEIGHT_DECAY` was set to 0. In the interest of time, I reverted back to a uniformnly sampled replay buffer. If I had more compute power, I would have spent more time on this.
 - This implementation trains a single agent to play against itself. I would like to try creating separate agents and training them in parallel using a single critic network for both agents.
 - Currently, rewards don't have an impact on the opposing agent. I believe this causes the agents to behave more cooperatively. I would be curious to see what would happen if rewards had an opposite effect on the opposing agent. So when `agent A` gets a reward `r`, `agent B` would get a reward `r * -n`, where `n` is some scaling factor.
