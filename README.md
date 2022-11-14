@@ -13,7 +13,7 @@ The problem is solved once the agent has achieved an average score of 30 over th
 This was built and **tested on MacBook Pro M1 chip only**.
 
  1. Clone this project. `git clone https://github.com/bigbap/Udacity_DRL_Continuous_Control.git`
- 2. Download banana environment from https://drive.google.com/file/d/1vU6aa33KALzQcb43s68OV2mnoh8-Wk2G/view?usp=sharing
+ 2. Download the tennis environment from https://drive.google.com/file/d/1nsRxeKqiiY1IzzjRsGpa2fh1P3wFQQvF/view?usp=share_link
  3. extract the contents of the downloaded environment into the cloned project directory.
 
 You will need to install Anaconda from https://www.anaconda.com/products/individual. Once Anaconda is installed, open up the terminal and type the following commands to create a new environment:
