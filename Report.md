@@ -4,7 +4,7 @@ The goal of this project is to create an agent that can be trained to maintain a
 
 The environment is solved once the agent has accumulated an average score of 30 over 100 episodes. An example of a trained agent can be seen below:
 
-![trained agent](./images/giphy.gif)
+![trained agent](./images/trained.gif)
 
 ## 1. Implementation
 I used the `MADDPG` algorithm, with a `uniformly sampled experience replay buffer`.
@@ -13,18 +13,18 @@ I used the `MADDPG` algorithm, with a `uniformly sampled experience replay buffe
 There are 2 neural  networks. One for the actor and the critic. Bearing in mind that the environment has `state_space_n = 33` and `action_space_n = 4`, each neural net has the following layers:
 
 **Actor**
-- `input layer = linear(state_space_n, 128)`
+- `input layer = linear(s_dim, 128)`
 - `hidden layer = linear(128, 128)`
-- `output layer = linear(128, action_space_n)`
+- `output layer = linear(128, a_dim)`
 
 The input and hidden layers pass through a `leaky_relu` activation function, and the output layer passes through a `tanh` in the forward pass.
 
 **Critic**
-- `input layer = linear(state_space_n, 128)`
-- `hidden layer = linear(128 + action_space_n, 128)`
+- `input layer = linear(s_dim, 128)`
+- `hidden layer = linear(128 + a_dim * n_agents, 128)`
 - `output layer = linear(128, 1)`
 
-The input and hidden layers pass through a `leaky_relu` activation function. The output layer is a linear value function. The `action_space_n` is concatenated to the input of the `hidden layer`.
+The input and hidden layers pass through a `leaky_relu` activation function. The output layer is a linear value function. The `a_dim * n_agents` is concatenated to the input of the `hidden layer`.
 
 ### 1.2. Hyper-parameters
 - BATCH_SIZE = 64           mini-batch size
@@ -37,9 +37,9 @@ The input and hidden layers pass through a `leaky_relu` activation function. The
 - WEIGHT_DECAY = 0          L2 penalty
 
 ## 2. Learning Plot
-The environment was solved in 180 episodes as can be seen in the plot below.
+The environment was solved in 832 episodes as can be seen in the plot below.
 
-![plot](./images/plot.png)
+![plot](./images/training_graph.png)
 
 ## 3. Ideas for the Future
 - Prioritized experience replay. I tried implementing a prioritized experience replay but it didn't seem to be making much of difference and there was a bug that cause the agent to crash if `WEIGHT_DECAY` was set to 0. In the interest of time, I reverted back to a uniformnly sampled replay buffer. If I had more compute power, I would have spent more time on this.
