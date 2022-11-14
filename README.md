@@ -3,16 +3,16 @@ This is the P3 project for the Deep Reinforcement Learning Nanodegree on https:/
 
 In the environment, two agents control rackets to hit a ball over a net. A reward of `0.1` is given to the agent every time it successfully hits the ball over the net. A reward of `-0.01` is given to the agent that lets the ball hit the ground or hits it out of bounds. The goal of both agents is to keep the ball in play as long as possible.
 
-The state space is comprised of 8 dimensions corresponding to position and velocity of the ball and racket. Each agent recieves it's own, local state. The action space is a 2 number vector corresponding to movement toward (or away from) the net, and jumping. Every number in the action space is between `-1` and `1`.
+The state space is comprised of `8` dimensions corresponding to position and velocity of the ball and racket. Each agent recieves it's own, local state. The action space is a `2` number vector corresponding to movement toward (or away from) the net, and jumping.
 
 The problem is solved once either agent has achieved an average score of `0.5` over the last 100 episodes. An example of a trained agent can be seen below:
 
 ![trained agent](./images/trained.gif)
 
 ## Getting started
-This was built and **tested on MacBook Pro M1 chip only**.
+This was built and **tested on a MacBook Pro M1 chip**.
 
- 1. Clone this project. `git clone https://github.com/bigbap/Udacity_DRL_Continuous_Control.git`
+ 1. Clone this project. `git clone https://github.com/bigbap/Udacity_DRL_Collab_Compet.git`
  2. Download the tennis environment from https://drive.google.com/file/d/1nsRxeKqiiY1IzzjRsGpa2fh1P3wFQQvF/view?usp=share_link
  3. extract the contents of the downloaded environment into the cloned project directory.
 
